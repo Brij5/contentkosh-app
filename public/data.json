@@ -1,0 +1,127 @@
+{
+  "services": [
+    {
+      "category": "Academic",
+      "items": [
+        {
+          "name": "Research Paper Writing",
+          "description": "Expertly crafted research papers on a wide range of topics, adhering to academic standards.",
+          "icon": "📄"
+        },
+        {
+          "name": "Dissertation Support",
+          "description": "Comprehensive guidance throughout the dissertation process, from topic selection to defense.",
+          "icon": "🎓"
+        },
+        {
+          "name": "Assignment Help",
+          "description": "Get assistance with various academic assignments, ensuring high-quality submissions.",
+          "icon": "📋"
+        }
+      ]
+    },
+    {
+      "category": "Non-Academic",
+      "items": [
+        {
+          "name": "Website Copywriting",
+          "description": "Engaging and persuasive website copy to attract and convert visitors.",
+          "icon": "🌐"
+        },
+        {
+          "name": "Product Descriptions",
+          "description": "Compelling product descriptions that highlight features and benefits.",
+          "icon": "🛍️"
+        },
+        {
+          "name": "Speech Writing",
+          "description": "Well-structured and impactful speeches for various occasions.",
+          "icon": "🗣️"
+        }
+      ]
+    },
+    {
+      "category": "Marketing",
+      "items": [
+        {
+          "name": "Content Marketing Strategy",
+          "description": "Develop a tailored content marketing strategy to drive brand awareness and customer engagement.",
+          "icon": "📈"
+        },
+        {
+          "name": "Email Campaign Creation",
+          "description": "Create effective email campaigns to nurture leads and retain customers.",
+          "icon": "📧"
+        },
+        {
+          "name": "Social Media Content Calendar",
+          "description": "Plan and schedule engaging social media content to build a strong online presence.",
+          "icon": "📱"
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Emma Thompson",
+      "role": "Small Business Owner",
+      "rating": 4.8,
+      "content": "ContentKosh transformed our online presence! Their content marketing strategy led to a significant increase in website traffic and conversions."
+    },
+    {
+      "name": "David Johnson",
+      "role": "University Student",
+      "rating": 4.5,
+      "content": "I was struggling with my research paper, but their team of writers provided me with a well-researched and well-written paper on time. Highly recommended!"
+    },
+    {
+      "name": "Sophia Lee",
+      "role": "Startup Founder",
+      "rating": 4.7,
+      "content": "The website copywriting services from ContentKosh are top-notch. They captured the essence of our brand and created copy that resonates with our target audience."
+    }
+  ],
+  "blogs": [
+    {
+      "title": "The Future of Content Marketing",
+      "description": "Explore the emerging trends and technologies shaping the future of content marketing and how your business can stay ahead.",
+      "image": "https://source.unsplash.com/800x600/?future-content-marketing",
+      "link": "#"
+    },
+    {
+      "title": "Tips for Writing Engaging Academic Papers",
+      "description": "Learn valuable tips and techniques to write engaging and high-scoring academic papers in any subject.",
+      "image": "https://source.unsplash.com/800x600/?academic-paper-writing",
+      "link": "#"
+    },
+    {
+      "title": "How to Create a Successful Social Media Content Calendar",
+      "description": "Discover the key steps to creating a successful social media content calendar that drives engagement and growth.",
+      "image": "https://source.unsplash.com/800x600/?social-media-content-calendar",
+      "link": "#"
+    }
+  ],
+  "teamMembers": [
+    {
+      "name": "Olivia Wilson",
+      "role": "Lead Content Strategist",
+      "education": "Masters in Marketing, Harvard University",
+      "image": "https://source.unsplash.com/200x200/?profile-woman-1",
+      "linkedin": "https://www.linkedin.com/in/olivia-wilson"
+    },
+    {
+      "name": "Liam Brown",
+      "role": "Senior Academic Writer",
+      "education": "PhD in English Literature, Oxford University",
+      "image": "https://source.unsplash.com/200x200/?profile-man-1",
+      "linkedin": "https://www.linkedin.com/in/liam-brown"
+    },
+    {
+      "name": "Ava Davis",
+      "role": "Marketing Manager",
+      "education": "MBA, Stanford University",
+      "image": "https://source.unsplash.com/200x200/?profile-woman-2",
+      "linkedin": "https://www.linkedin.com/in/ava-davis"
+    }
+  ]
+}
