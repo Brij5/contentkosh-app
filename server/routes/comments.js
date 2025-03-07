@@ -1,14 +1,14 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
   getComments,
   getComment,
   addComment,
   updateComment,
   deleteComment,
   likeComment
-} = require('../controllers/commentController');
+} from '../controllers/commentController.js';
 
-const { protect, authorize } = require('../middleware/auth');
+import { protect, authorize } from '../middleware/auth.js';
 
 const router = express.Router({ mergeParams: true });
 
@@ -24,4 +24,4 @@ router.put('/:id', updateComment);
 router.delete('/:id', deleteComment);
 router.put('/:id/like', likeComment);
 
-module.exports = router; 
+export default router; 

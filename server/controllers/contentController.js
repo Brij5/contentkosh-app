@@ -1,10 +1,10 @@
-const Content = require('../models/Content');
-const ErrorResponse = require('../utils/errorResponse');
+import Content from '../models/Content.js';
+import ErrorResponse from '../utils/errorResponse.js';
 
 // @desc    Get all content
 // @route   GET /api/content
 // @access  Public
-exports.getAllContent = async (req, res, next) => {
+export const getAllContent = async (req, res, next) => {
   try {
     // Copy req.query
     const reqQuery = { ...req.query };
@@ -83,7 +83,7 @@ exports.getAllContent = async (req, res, next) => {
 // @desc    Get single content
 // @route   GET /api/content/:id
 // @access  Public
-exports.getContent = async (req, res, next) => {
+export const getContent = async (req, res, next) => {
   try {
     const content = await Content.findById(req.params.id).populate({
       path: 'author',
@@ -110,7 +110,7 @@ exports.getContent = async (req, res, next) => {
 // @desc    Create new content
 // @route   POST /api/content
 // @access  Private
-exports.createContent = async (req, res, next) => {
+export const createContent = async (req, res, next) => {
   try {
     // Add user to req.body
     req.body.author = req.user.id;
@@ -129,7 +129,7 @@ exports.createContent = async (req, res, next) => {
 // @desc    Update content
 // @route   PUT /api/content/:id
 // @access  Private
-exports.updateContent = async (req, res, next) => {
+export const updateContent = async (req, res, next) => {
   try {
     let content = await Content.findById(req.params.id);
 
@@ -159,7 +159,7 @@ exports.updateContent = async (req, res, next) => {
 // @desc    Delete content
 // @route   DELETE /api/content/:id
 // @access  Private
-exports.deleteContent = async (req, res, next) => {
+export const deleteContent = async (req, res, next) => {
   try {
     const content = await Content.findById(req.params.id);
 
@@ -172,7 +172,8 @@ exports.deleteContent = async (req, res, next) => {
       return next(new ErrorResponse(`User ${req.user.id} is not authorized to delete this content`, 401));
     }
 
-    await content.remove();
+    // Use deleteOne() instead of deprecated remove()
+    await content.deleteOne();
 
     res.status(200).json({
       success: true,
@@ -186,7 +187,7 @@ exports.deleteContent = async (req, res, next) => {
 // @desc    Like content
 // @route   PUT /api/content/:id/like
 // @access  Private
-exports.likeContent = async (req, res, next) => {
+export const likeContent = async (req, res, next) => {
   try {
     const content = await Content.findById(req.params.id);
 

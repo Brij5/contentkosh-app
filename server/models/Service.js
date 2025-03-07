@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const subServiceSchema = new mongoose.Schema({
   title: {
@@ -69,4 +69,5 @@ const serviceSchema = new mongoose.Schema({
   subServices: [subServiceSchema]
 }, { timestamps: true });
 
-module.exports = mongoose.model('Service', serviceSchema);
+const Service = mongoose.model('Service', serviceSchema);
+export default Service;

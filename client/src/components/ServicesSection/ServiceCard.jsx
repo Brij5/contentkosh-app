@@ -101,8 +101,15 @@ const Button = styled.button`
   }
 `;
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, theme }) => {
   const { title, description, icon, color, price, features } = service;
+  
+  // Apply default theme if none is provided
+  const defaultTheme = theme || {
+    cardBackground: '#ffffff',
+    textColor: '#333333',
+    textColorLight: '#666666'
+  };
 
   return (
     <Card
@@ -110,16 +117,17 @@ const ServiceCard = ({ service }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      theme={defaultTheme}
     >
       <IconContainer color={color}>
         {icon}
       </IconContainer>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-      <Price>Starting at {price}</Price>
+      <Title theme={defaultTheme}>{title}</Title>
+      <Description theme={defaultTheme}>{description}</Description>
+      <Price theme={defaultTheme}>Starting at {price}</Price>
       <FeaturesList>
         {features && features.map((feature, index) => (
-          <Feature key={index} color={color}>
+          <Feature key={index} color={color} theme={defaultTheme}>
             {feature}
           </Feature>
         ))}
@@ -137,7 +145,8 @@ ServiceCard.propTypes = {
     color: PropTypes.string,
     price: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.string)
-  }).isRequired
+  }).isRequired,
+  theme: PropTypes.object
 };
 
 export default ServiceCard;

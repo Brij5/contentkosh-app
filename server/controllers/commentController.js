@@ -1,11 +1,11 @@
-const Comment = require('../models/Comment');
-const Content = require('../models/Content');
-const ErrorResponse = require('../utils/errorResponse');
+import Comment from '../models/Comment.js';
+import Content from '../models/Content.js';
+import ErrorResponse from '../utils/errorResponse.js';
 
 // @desc    Get all comments
 // @route   GET /api/content/:contentId/comments
 // @access  Public
-exports.getComments = async (req, res, next) => {
+export const getComments = async (req, res, next) => {
   try {
     let query;
 
@@ -35,7 +35,7 @@ exports.getComments = async (req, res, next) => {
 // @desc    Get single comment
 // @route   GET /api/comments/:id
 // @access  Public
-exports.getComment = async (req, res, next) => {
+export const getComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id).populate({
       path: 'user',
@@ -58,7 +58,7 @@ exports.getComment = async (req, res, next) => {
 // @desc    Add comment
 // @route   POST /api/content/:contentId/comments
 // @access  Private
-exports.addComment = async (req, res, next) => {
+export const addComment = async (req, res, next) => {
   try {
     req.body.content = req.params.contentId;
     req.body.user = req.user.id;
@@ -83,7 +83,7 @@ exports.addComment = async (req, res, next) => {
 // @desc    Update comment
 // @route   PUT /api/comments/:id
 // @access  Private
-exports.updateComment = async (req, res, next) => {
+export const updateComment = async (req, res, next) => {
   try {
     let comment = await Comment.findById(req.params.id);
 
@@ -116,7 +116,7 @@ exports.updateComment = async (req, res, next) => {
 // @desc    Delete comment
 // @route   DELETE /api/comments/:id
 // @access  Private
-exports.deleteComment = async (req, res, next) => {
+export const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
 
@@ -129,7 +129,7 @@ exports.deleteComment = async (req, res, next) => {
       return next(new ErrorResponse(`User ${req.user.id} is not authorized to delete this comment`, 401));
     }
 
-    await comment.remove();
+    await comment.deleteOne();
 
     res.status(200).json({
       success: true,
@@ -143,7 +143,7 @@ exports.deleteComment = async (req, res, next) => {
 // @desc    Like comment
 // @route   PUT /api/comments/:id/like
 // @access  Private
-exports.likeComment = async (req, res, next) => {
+export const likeComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
 

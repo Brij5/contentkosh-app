@@ -1,17 +1,17 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
   getAllContent,
   getContent,
   createContent,
   updateContent,
   deleteContent,
   likeContent
-} = require('../controllers/contentController');
+} from '../controllers/contentController.js';
 
-const { protect, authorize } = require('../middleware/auth');
+import { protect, authorize } from '../middleware/auth.js';
 
 // Include other resource routers
-const commentRouter = require('./comments');
+import commentRouter from './comments.js';
 
 const router = express.Router();
 
@@ -30,4 +30,4 @@ router.put('/:id', updateContent);
 router.delete('/:id', deleteContent);
 router.put('/:id/like', likeContent);
 
-module.exports = router; 
+export default router; 

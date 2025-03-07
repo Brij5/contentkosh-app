@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const User = require('../models/user');
-const { authenticateToken, authorizeRole } = require('../middleware/auth');
+import User from '../models/user.js';
+import { protect, authorize } from '../middleware/auth.js';
 
 // Get all users (Admin only)
-router.get('/', authenticateToken, authorizeRole('admin'), async (req, res) => {
+router.get('/', protect, authorize('admin'), async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -31,7 +31,7 @@ router.get('/', authenticateToken, authorizeRole('admin'), async (req, res) => {
 });
 
 // Get user by ID
-router.get('/:id', authenticateToken, async (req, res) => {
+router.get('/:id', protect, async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select('-password');
     if (!user) {
@@ -51,7 +51,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
 });
 
 // Update user
-router.put('/:id', authenticateToken, async (req, res) => {
+router.put('/:id', protect, async (req, res) => {
   try {
     // Only allow admins or the user themselves to update
     if (req.user.role !== 'admin' && req.user.userId !== req.params.id) {
@@ -85,7 +85,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
 });
 
 // Delete user
-router.delete('/:id', authenticateToken, authorizeRole('admin'), async (req, res) => {
+router.delete('/:id', protect, authorize('admin'), async (req, res) => {
   try {
     // Prevent deleting the last admin
     if (req.user.role === 'admin') {
@@ -110,7 +110,7 @@ router.delete('/:id', authenticateToken, authorizeRole('admin'), async (req, res
 });
 
 // Update user password
-router.put('/:id/password', authenticateToken, async (req, res) => {
+router.put('/:id/password', protect, async (req, res) => {
   try {
     // Only allow users to change their own password
     if (req.user.userId !== req.params.id) {
@@ -141,4 +141,4 @@ router.put('/:id/password', authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router; 
+export default router; 

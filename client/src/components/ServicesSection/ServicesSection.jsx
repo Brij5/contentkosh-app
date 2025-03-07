@@ -61,9 +61,18 @@ const LoadingSpinner = styled(motion.div)`
 `;
 
 // ServicesSection component with mock data
-const ServicesSection = () => {
+const ServicesSection = ({ theme }) => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  // Apply default theme if none is provided
+  const defaultTheme = theme || {
+    backgroundSecondary: '#f9f9f9',
+    primaryColor: '#800080',
+    textColor: '#333333',
+    textColorLight: '#666666',
+    borderColor: '#e0e0e0'
+  };
 
   useEffect(() => {
     // Mock service data
@@ -123,22 +132,25 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <Section>
+    <Section theme={defaultTheme}>
       <Container>
-        <Title>Our Services</Title>
-        <SubTitle>
+        <Title theme={defaultTheme}>Our Services</Title>
+        <SubTitle theme={defaultTheme}>
           We offer a comprehensive range of content solutions to help your business grow and engage with your audience.
         </SubTitle>
         {loading ? (
           <LoadingSpinner
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+            theme={defaultTheme}
           />
         ) : (
           <Grid>
-            {services.map((service) => (
-              <ServiceCard key={service._id} service={service} />
-            ))}
+            {services && services.length > 0 ? services.map((service) => (
+              <ServiceCard key={service._id} service={service} theme={defaultTheme} />
+            )) : (
+              <p>No services available at the moment.</p>
+            )}
           </Grid>
         )}
       </Container>

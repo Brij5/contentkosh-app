@@ -55,6 +55,14 @@ const BackLink = styled(Link)`
 const Unauthorized = () => {
   const location = useLocation();
   const message = location.state?.message || "You don't have permission to access this page";
+  
+  // Mock theme for styling
+  const theme = {
+    warningColor: '#FFC107',
+    textColor: '#333333',
+    textColorLight: '#666666',
+    primaryColor: '#800080'
+  };
 
   return (
     <Container>
@@ -62,6 +70,7 @@ const Unauthorized = () => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 10 }}
+        theme={theme}
       >
         <FiLock />
       </IconWrapper>
@@ -70,6 +79,7 @@ const Unauthorized = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
+        theme={theme}
       >
         Access Denied
       </Title>
@@ -78,6 +88,7 @@ const Unauthorized = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
+        theme={theme}
       >
         {message}
       </Message>
@@ -87,7 +98,7 @@ const Unauthorized = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <BackLink to="/">
+        <BackLink to="/" theme={theme}>
           <FiArrowLeft /> Go Back to Home
         </BackLink>
       </motion.div>

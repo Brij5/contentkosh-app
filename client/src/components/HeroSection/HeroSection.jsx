@@ -159,7 +159,7 @@ const ImageContainer = styled(motion.div)`
   }
 `;
 
-const HeroSection = ({ onGetStarted, onLearnMore }) => {
+const HeroSection = ({ onGetStarted, onLearnMore, theme }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -227,9 +227,10 @@ const HeroSection = ({ onGetStarted, onLearnMore }) => {
   };
 
   return (
-    <HeroContainer>
+    <HeroContainer theme={theme}>
       <BackgroundShape 
         className="shape1"
+        theme={theme}
         animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 90, 0]
@@ -242,6 +243,7 @@ const HeroSection = ({ onGetStarted, onLearnMore }) => {
       />
       <BackgroundShape 
         className="shape2"
+        theme={theme}
         animate={{
           scale: [1, 1.1, 1],
           rotate: [0, -90, 0]
@@ -254,43 +256,46 @@ const HeroSection = ({ onGetStarted, onLearnMore }) => {
       />
       <ContentWrapper as={motion.div} variants={containerVariants} initial="hidden" animate="visible">
         <TextContent>
-          <Title variants={itemVariants}>
+          <Title variants={itemVariants} theme={theme}>
             Transform Your Content with <span>AI-Powered</span> Solutions
           </Title>
-          <Subtitle variants={itemVariants}>
+          <Subtitle variants={itemVariants} theme={theme}>
             Streamline your content creation process with our advanced AI tools. Create, manage, and optimize your content effortlessly.
           </Subtitle>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
-              <Label>Name</Label>
+              <Label theme={theme}>Name</Label>
               <Input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
+                theme={theme}
               />
             </FormGroup>
             <FormGroup>
-              <Label>Email</Label>
+              <Label theme={theme}>Email</Label>
               <Input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                theme={theme}
               />
             </FormGroup>
             <FormGroup>
-              <Label>Message</Label>
+              <Label theme={theme}>Message</Label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
+                style={{ resize: 'vertical', padding: '0.75rem', borderRadius: '4px', width: '100%' }}
               />
             </FormGroup>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting} theme={theme}>
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </Button>
           </Form>
@@ -304,7 +309,7 @@ const HeroSection = ({ onGetStarted, onLearnMore }) => {
           transition={{ duration: 0.3 }}
         >
           <img 
-            src="/assets/hero-image.png" 
+            src="https://via.placeholder.com/600x400?text=AI+Content+Management" 
             alt="AI Content Management Platform"
             loading="eager"
           />
@@ -316,6 +321,7 @@ const HeroSection = ({ onGetStarted, onLearnMore }) => {
 
 HeroSection.propTypes = {
   onGetStarted: PropTypes.func.isRequired,
-  onLearnMore: PropTypes.func.isRequired
+  onLearnMore: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired
 };
 export default HeroSection;

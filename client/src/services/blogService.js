@@ -116,4 +116,11 @@ class BlogService extends ApiService {
   }
 }
 
-export default new BlogService();
+const blogService = new BlogService();
+
+// Helper function for getBlog to match the useData hook expectations
+export const getBlog = (id) => {
+  return blogService.getById(id);
+};
+
+export default blogService;

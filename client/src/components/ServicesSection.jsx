@@ -64,10 +64,21 @@ const services = [
   },
 ];
 
-const ServicesSection = () => {
+const ServicesSection = ({ theme }) => {
+  // Apply default theme if none is provided
+  const defaultTheme = theme || {
+    colors: {
+      background: '#f9f9f9',
+      primary: '#800080',
+      card: '#ffffff',
+      text: '#333333',
+      textSecondary: '#666666'
+    }
+  };
+
   return (
-    <ServicesContainer>
-      <Title>Our Services</Title>
+    <ServicesContainer theme={defaultTheme}>
+      <Title theme={defaultTheme}>Our Services</Title>
       <ServicesGrid>
         {services.map((service) => (
           <ServiceCard
@@ -76,10 +87,11 @@ const ServicesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
+            theme={defaultTheme}
           >
-            <ServiceIcon>{service.icon}</ServiceIcon>
-            <ServiceTitle>{service.title}</ServiceTitle>
-            <ServiceDescription>{service.description}</ServiceDescription>
+            <ServiceIcon theme={defaultTheme}>{service.icon}</ServiceIcon>
+            <ServiceTitle theme={defaultTheme}>{service.title}</ServiceTitle>
+            <ServiceDescription theme={defaultTheme}>{service.description}</ServiceDescription>
           </ServiceCard>
         ))}
       </ServicesGrid>

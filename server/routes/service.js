@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const Service = require('../models/Service');
-const { authenticateToken, authorizeRole } = require('../middleware/auth');
-const { upload } = require('../middleware/upload');
+import Service from '../models/Service.js';
+import { protect, authorize } from '../middleware/auth.js';
+import { upload } from '../middleware/upload.js';
 
 // Sample services data
 const sampleServices = [
@@ -121,4 +121,4 @@ router.get('/', async (req, res) => {
 
 // Rest of the routes...
 
-module.exports = router; 
+export default router; 

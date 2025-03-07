@@ -22,6 +22,10 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@theme': path.resolve(__dirname, './src/theme'),
       '@utils': path.resolve(__dirname, './src/utils')
-    }
+    },
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+  },
+  build: {
+    outDir: 'dist'
   }
 });

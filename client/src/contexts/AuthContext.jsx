@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Initialize auth state
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -36,12 +35,10 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         return;
       }
-
       const response = await axios.get('/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
-
-      setUser(response.data.data.user);
+      setUser(response.data.user);
     } catch (error) {
       console.error('Error fetching current user:', error);
       localStorage.removeItem('token');
@@ -54,14 +51,13 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await axios.post('/api/auth/login', { email, password });
-      const { token, data: { user } } = response.data;
-      
+      const { token, user } = response.data;
+
       localStorage.setItem('token', token);
       setUser(user);
-      
-      // Configure axios defaults
+
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      
+
       return user;
     } catch (error) {
       setError(error.response?.data?.message || 'An error occurred during login');
@@ -73,14 +69,13 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await axios.post('/api/auth/register', userData);
-      const { token, data: { user } } = response.data;
-      
+      const { token, user } = response.data;
+
       localStorage.setItem('token', token);
       setUser(user);
-      
-      // Configure axios defaults
+
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      
+
       return user;
     } catch (error) {
       setError(error.response?.data?.message || 'An error occurred during registration');
@@ -168,4 +163,4 @@ AuthProvider.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default AuthContext; 
+export default AuthContext;
